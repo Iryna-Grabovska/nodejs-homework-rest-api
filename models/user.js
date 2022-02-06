@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
-// const { string } = require("joi");
 
 const userSchema = Schema(
   {
@@ -27,10 +26,8 @@ const userSchema = Schema(
 );
 
 const registerJoiSchema = Joi.object({
-  email: Joi.string().required(),
   password: Joi.string().min(6).required(),
-  subscription: Joi.string(),
-  token: Joi.string(),
+  email: Joi.string().required(),
 });
 
 const User = model("user", userSchema);
