@@ -26,8 +26,10 @@ const userSchema = Schema(
 );
 
 const registerJoiSchema = Joi.object({
+  name: Joi.string().required(),
   password: Joi.string().min(6).required(),
   email: Joi.string().required(),
+  subscription: Joi.string().valid("starter", "pro", "business"),
 });
 
 const User = model("user", userSchema);

@@ -2,6 +2,8 @@ const createError = require("http-errors");
 const jwt = require("jsonwebtoken");
 
 const { User } = require("../models/user");
+require("dotenv").config();
+const { SECRET_KEY } = process.env;
 
 const authenticate = async (req, res, next) => {
   try {
@@ -11,8 +13,9 @@ const authenticate = async (req, res, next) => {
       // eslint-disable-next-line new-cap
       throw new createError(401, "Not authorized");
     }
-    const { id } = jwt.verify(token, process.env.SECRET_KEY);
+    const { id } = jwt.verify(token, SECRET_KEY);
     const user = await User.findById(id);
+    console.log(user._id);
     if (!user || !user.token) {
       // eslint-disable-next-line new-cap
       throw new createError(401, "Not authorized");
