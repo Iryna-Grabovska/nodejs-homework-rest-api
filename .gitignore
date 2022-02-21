@@ -1,2 +1,9 @@
-.env
+# Dependency directories
 node_modules/
+
+# Misc
+.DS_Store
+.vscode
+
+# Environment variables
+.env
